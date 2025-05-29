@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ReservationController;  // أو اسم الكونترولر الصحيح
+use App\Http\Controllers\ReservationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -9,10 +9,16 @@ use App\Http\Controllers\ReservationController;  // أو اسم الكونترو
 |--------------------------------------------------------------------------
 */
 
-
-// Route الرئيسية
 Route::get('/', [ReservationController::class, 'index']);
-Route::get('/events', [ReservationController::class, 'getEvents']);
-Route::post('/events', [ReservationController::class, 'store']);
-Route::put('/events/{id}', [ReservationController::class, 'update']);
-Route::get('/check-availability', [ReservationController::class, 'checkAvailability']);
+
+// API Routes
+Route::prefix('events')->group(function () {
+    Route::get('/', [ReservationController::class, 'getEvents']);
+    Route::post('/', [ReservationController::class, 'store']);
+    Route::put('/{id}', [ReservationController::class, 'update']);
+    Route::delete('/{id}', [ReservationController::class, 'destroy']);
+    Route::post('/{id}/extend', [ReservationController::class, 'extend']);
+    Route::post('/check-availability', [ReservationController::class, 'checkAvailability']); // Moved inside events prefix and changed to POST
+});
+
+Route::get('/type-rooms/{id}/rooms', [ReservationController::class, 'getRoomsByType']);

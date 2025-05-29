@@ -30,5 +30,9 @@ return [
     'max_age' => 0,
 
     'supports_credentials' => false,
+    'paths' => ['api/*'],
+'allowed_methods' => ['*'],
+'allowed_origins' => ['*'], // En production, remplacez par votre domaine
+'allowed_headers' => ['*'],
 
 ];

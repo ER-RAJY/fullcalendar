@@ -1,0 +1,112 @@
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2ecc71;
+            --danger-color: #e74c3c;
+            --warning-color: #f39c12;
+        }
+        
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #f5f7fa;
+        }
+        
+        .calendar-header {
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+            color: white;
+            border-radius: 8px 8px 0 0;
+            padding: 15px 20px;
+            margin-bottom: 0;
+        }
+        
+        .calendar-container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .room-type-card {
+            border-left: 4px solid var(--primary-color);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .room-type-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .room-type-card.active {
+            border-left: 4px solid var(--secondary-color);
+            background-color: rgba(46, 204, 113, 0.1);
+        }
+        
+        .room-item {
+            padding: 8px 15px;
+            margin: 5px 0;
+            border-radius: 4px;
+            background-color: #f8f9fa;
+            transition: all 0.2s;
+        }
+        
+        .room-item:hover {
+            background-color: #e9ecef;
+        }
+        
+        .room-item.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        /* Styles pour FullCalendar */
+        .fc-event {
+            border-radius: 4px;
+            border: none;
+            font-weight: bold;
+            padding: 2px 5px;
+        }
+        
+        .fc-event-stay {
+            background-color: var(--secondary-color);
+        }
+        
+        .fc-event-conference {
+            background-color: var(--primary-color);
+        }
+        
+        .fc-event-meeting {
+            background-color: var(--warning-color);
+        }
+        
+        .fc-toolbar-title {
+            font-weight: 600;
+        }
+        
+        .fc-button {
+            background-color: var(--primary-color) !important;
+            border: none !important;
+        }
+        
+        .fc-button:hover {
+            opacity: 0.9;
+        }
+        
+        .fc-daygrid-day-number {
+            color: #2c3e50;
+            font-weight: bold;
+        }
+        
+        .fc-day-today {
+            background-color: rgba(52, 152, 219, 0.1) !important;
+        }
+        
+        /* Modal styles */
+        .modal-header {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .form-label {
+            font-weight: 600;
+            color: #2c3e50;
+        }
