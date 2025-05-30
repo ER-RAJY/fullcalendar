@@ -12,11 +12,13 @@ class Reservation extends Model
     use HasFactory;
 
     protected $fillable = [
-        'client_name',
         'room_id',
+        'client_name',
+        'client_phone', // nullable
         'start_date',
         'end_date',
-        'activity_type'
+        'activity_type',
+        'notes'         // nullable
     ];
     
 

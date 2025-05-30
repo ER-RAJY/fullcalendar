@@ -594,12 +594,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     return;
                 }
 
-                if (selectedRoom.id == 1) {
-                    afficherToast('Refusé', 'La chambre 1 ne peut jamais être réservée.', 'danger');
-                    calendar.unselect();
-                    return;
-                }
-
                 const typeActivite = document.getElementById('activityTypeSelect').value;
                 let startDate = info.startStr;
                 let endDate = info.endStr;

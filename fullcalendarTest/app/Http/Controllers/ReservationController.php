@@ -30,7 +30,9 @@ class ReservationController extends Controller
                 'extendedProps' => [
                     'room_id' => $reservation->room_id,
                     'activity_type' => $reservation->activity_type,
-                    'client_name' => $reservation->client_name
+                    'client_name' => $reservation->client_name,
+                    'client_phone' => $reservation->client_phone,
+                    'notes' => $reservation->notes
                 ],
                 'backgroundColor' => $this->getEventColor($reservation->activity_type),
                 'borderColor' => $this->getEventColor($reservation->activity_type),
@@ -56,9 +58,11 @@ class ReservationController extends Controller
         $validatedData = $request->validate([
             'room_id' => 'required|exists:rooms,id',
             'client_name' => 'required|string|max:255',
+            'client_phone' => 'nullable|string|max:20',
             'start_date' => 'required|date',
             'end_date' => 'required|date|after_or_equal:start_date',
             'activity_type' => 'required|string|in:stay,conference,meeting',
+            'notes' => 'nullable|string'
         ]);
 
         // Room 1 cannot be reserved
@@ -92,9 +96,11 @@ class ReservationController extends Controller
         $reservation = Reservation::create([
             'room_id' => $validatedData['room_id'],
             'client_name' => $validatedData['client_name'],
+            'client_phone' => $validatedData['client_phone'],
             'start_date' => $startDate,
             'end_date' => $endDate,
-            'activity_type' => $validatedData['activity_type']
+            'activity_type' => $validatedData['activity_type'],
+            'notes' => $validatedData['notes']
         ]);
 
         return response()->json([
@@ -254,7 +260,7 @@ class ReservationController extends Controller
         if ($isBooked) {
             return response()->json([
                 'success' => false,
-                'message' => 'Cette chambre est déjà réservée pour ' . $activityType . ' à cette période.',
+                'message' => 'Cette chambre est déjà réservée pour ' . $reservation->activity_type . ' à cette période.',
             ], 409);
         }
 
